@@ -1,0 +1,6 @@
+node_modules
+dist
+res/*.geojson
+res/*.json
+logs
+error_logs

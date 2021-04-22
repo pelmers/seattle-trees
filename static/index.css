@@ -1,0 +1,35 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+#map-container {
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    bottom: 0px;
+}
+
+.tree-popup-contents {
+    font-size: 1.25em;
+}
+
+.tree-popup-contents img {
+    padding-left: 0.5em;
+}
+
+.tree-popup-contents a {
+    padding-top: 0.2em;
+    font-size: 1.8em;
+}
+
+.location-popup-contents {
+    padding: 1em;
+    line-height: 2em;
+    font-size: 1.7em;
+}
+
+.location-popup-contents button {
+    padding: 1em;
+    font-size: 2.2em;
+}
