@@ -77,7 +77,20 @@ async function main() {
         }
     });
     map.addControl(geolocate);
-    map.on('load', () => geolocate.trigger());
+    map.on('load', () => {
+        const $info = document.createElement('span');
+        const $infoAnchor = document.createElement('a');
+        $infoAnchor.href =
+            'https://seattlecitygis.maps.arcgis.com/apps/MapSeries/index.html?appid=a7072ffa326c4ef39a0f031961ebace6';
+        $infoAnchor.innerText = 'View data source';
+        $info.style.marginLeft = '12px';
+        $info.style.padding = '10px';
+        $info.style.backgroundColor = 'hsla(0,0%,100%,.5)';
+        $info.appendChild($infoAnchor);
+        const $bottomLeft = document.querySelector('.mapboxgl-ctrl-bottom-left');
+        $bottomLeft && $bottomLeft.appendChild($info);
+        geolocate.trigger();
+    });
     let currentRequest: CancelablePromiseType<TWikiInfo> | null = null;
     map.on('click', 'trees-layer', async (e) => {
         const { lngLat } = e;
