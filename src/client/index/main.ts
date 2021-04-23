@@ -33,10 +33,11 @@ function addTreePopup(loc: mapboxgl.LngLatLike, map: mapboxgl.Map, info: TWikiIn
             `
 <div class="tree-popup-contents">
     <a href="${info!.pageUrl}" target="_blank"><b>${info!.title}</b></a><br>
+    <i>${info!.tree.species}</i><br>
     <img src="${
         info!.imageUrl
     }" style="float: right; max-height: 200px; max-width: calc(${maxWidth} - 7em);"></img>
-    ${info!.description}
+    <p>${info!.description}
 </div>
     `
         )

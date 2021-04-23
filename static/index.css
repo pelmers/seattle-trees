@@ -12,6 +12,10 @@ body {
 
 .tree-popup-contents {
     font-size: 1.25em;
+	line-height: 1.65em;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Fira Sans','Droid Sans','Helvetica Neue',sans-serif;
+    background: #fff;
+	color: #212121;
 }
 
 .tree-popup-contents img {
@@ -21,7 +25,15 @@ body {
 .tree-popup-contents a {
     padding-top: 0.2em;
     font-size: 1.8em;
+	text-decoration:none;
+	color: #0085b9;
 }
+
+.tree-popup-contents a:hover {
+	text-decoration:underline;
+}
+
+
 
 .location-popup-contents {
     padding: 1em;
