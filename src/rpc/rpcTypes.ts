@@ -12,7 +12,7 @@ export interface FN<I extends AnyJson, O extends AnyJson> {
     i: t.Type<I>;
     o: t.Type<O>;
 }
-export type AsyncFN<I, O> = (i: I) => Promise<O>;
+export type AsyncFN<I, O> = (i?: I) => Promise<O>;
 
 export type CallPayload = { id: number; method: string; arg: AnyJson };
 export type ResultPayload = { id: number; result: AnyJson };

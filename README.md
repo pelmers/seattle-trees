@@ -16,13 +16,16 @@ Note that this repo doesn't include the data directly, see instructions for
 downloading it in [`res/README.md`](/res/README.md).
 
 ### Build
+
 ```
 yarn
 yarn build
 ```
 
 ### Run
+
 ```
 env MAPBOX_API_KEY=<Mapbox API KEY> MEANINGCLOUD_API_KEY=<MeaningCloud API Key> node dist/server.bundle.js
 ```
+
 Additionally pass `--debug` to enable more logging at run time.

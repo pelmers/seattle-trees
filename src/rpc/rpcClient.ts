@@ -7,6 +7,7 @@ import {
     FN,
     ResultPayload,
 } from './rpcTypes';
+import * as t from 'io-ts';
 import { isRight } from 'fp-ts/lib/Either';
 
 class Resolver<T> {
@@ -45,9 +46,15 @@ export class RpcClient {
         typeLoader: () => FN<I, O>
     ): AsyncFN<I, O> {
         const { name } = typeLoader;
-        const concreteType = typeLoader();
+        const { i, o } = typeLoader();
         const id = this.id++;
-        return async (arg: I) => {
+        return async (argValue?: I) => {
+            const arg = argValue === undefined ? null : argValue;
+            if (argValue === undefined && !i.is(null)) {
+                throw new Error(
+                    `No argument passed for non-null input of RPC function ${name}`
+                );
+            }
             const pendingCall = new Resolver<O>();
             this.pendingCalls.set(id, pendingCall);
             await this.transport.send({ id, method: name, arg });
@@ -57,7 +64,7 @@ export class RpcClient {
             } finally {
                 this.pendingCalls.delete(id);
             }
-            const validation = concreteType.o.decode(result);
+            const validation = o.decode(result);
             if (!isRight(validation)) {
                 console.error('Failed to validate', result);
                 throw new Error(
