@@ -45,6 +45,20 @@ function addTreePopup(loc: mapboxgl.LngLatLike, map: mapboxgl.Map, info: TWikiIn
         .addTo(map);
 }
 
+function addErrorPopup(loc: mapboxgl.LngLatLike, map: mapboxgl.Map, e: string) {
+    const maxWidth = '64vw';
+    new mapboxgl.Popup({ maxWidth, anchor: 'top' })
+        .setHTML(
+            `
+<div class="tree-popup-contents">
+    <i>Error: ${e}</i><br>
+</div>
+    `
+        )
+        .setLngLat(loc)
+        .addTo(map);
+}
+
 async function main() {
     const [center, bounds, token] = await Promise.all([
         getMapCenter(),
@@ -102,19 +116,21 @@ async function main() {
         const thisRequest = cancelable(getTreeInfoAtPoint(lngLat));
         currentRequest = thisRequest;
         let info: TWikiInfo | null = null;
-        let wasError = false;
+        let errorMessage: string | undefined;
         try {
             info = await thisRequest;
         } catch (e) {
             console.error('info request failed', e);
-            wasError = true;
+            errorMessage = e.message;
         }
         if (currentRequest === thisRequest) {
             // If we completed successfully and nothing interrupted,
             // then unset currentRequest so next call doesn't send cancel()
             // on an already fulfilled promise
             currentRequest = null;
-            if (!wasError) {
+            if (errorMessage != null) {
+                addErrorPopup(lngLat, map, errorMessage);
+            } else {
                 addTreePopup(lngLat, map, info);
             }
         }

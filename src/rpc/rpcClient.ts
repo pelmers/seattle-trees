@@ -7,7 +7,6 @@ import {
     FN,
     ResultPayload,
 } from './rpcTypes';
-import * as t from 'io-ts';
 import { isRight } from 'fp-ts/lib/Either';
 
 class Resolver<T> {
