@@ -13,7 +13,7 @@ Street tree data is sourced from SDOT's
 [Urban Forestry Map](https://seattlecitygis.maps.arcgis.com/apps/MapSeries/index.html?appid=a7072ffa326c4ef39a0f031961ebace6).
 
 Note that this repo doesn't include the data directly, see instructions for
-downloading it in `res/README.md`.
+downloading it in [`res/README.md`](/res/README.md).
 
 ### Build
 ```
