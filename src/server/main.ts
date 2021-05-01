@@ -6,12 +6,11 @@ import io from 'socket.io';
 import wiki, { Page } from 'wikijs';
 import { TreeIndex } from './treeIndex';
 import { d, question, r, time } from './utils';
-import { RpcServer } from '../rpc/rpcServer';
 import { Calls } from '../rpc/rpcCalls';
-import { SocketTransport } from '../rpc/rpcSocketTransport';
 import util from 'util';
 import fetch from 'node-fetch';
 import fs from 'fs';
+import { RpcServer, SocketTransport } from 'roots-rpc';
 
 consoleStamp(console);
 
@@ -113,6 +112,9 @@ function handleConnection(socket: io.Socket, treeIndex: TreeIndex) {
 }
 
 async function findPage(species: string): Promise<Page> {
+    if (species.endsWith(' sp.')) {
+        species = species.slice(0, -4);
+    }
     try {
         const page = await wiki().find(species);
         if (page == null) {

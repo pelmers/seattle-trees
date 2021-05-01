@@ -1,6 +1,5 @@
+import { RpcClient, SocketTransport } from 'roots-rpc';
 import { Calls } from '../rpc/rpcCalls';
-import { RpcClient } from '../rpc/rpcClient';
-import { SocketTransport } from '../rpc/rpcSocketTransport';
 
 const socket = io();
 
