@@ -20,6 +20,7 @@ let mapboxApiKey = process.env['MAPBOX_API_KEY']!;
 let meaningcloudApiKey = process.env['MEANINGCLOUD_API_KEY']!;
 
 const dataFile = r('res/data.geojson');
+// TODO support the arboretum tree data file, https://uw.maps.arcgis.com/home/webmap/viewer.html?webmap=ed25c6ffca99423bbc6a18a162e82187
 const infoCacheFile = r('res/infoCache.json');
 let infoCache: Map<string, { text: string; image: string; url: string }>;
 async function loadInfoCache() {
